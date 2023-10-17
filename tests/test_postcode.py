@@ -1,5 +1,5 @@
 import unittest
-from postcodelib.postcode import Postcode
+from src.postcodelib.postcode import Postcode
 
 
 class TestPostcode(unittest.TestCase):

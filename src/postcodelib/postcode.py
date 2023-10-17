@@ -1,5 +1,5 @@
 import re
-from postcodelib.validation_rules import Rules
+from src.postcodelib.validation_rules import Rules
 
 
 class Postcode:
