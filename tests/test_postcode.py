@@ -15,14 +15,16 @@ class TestPostcode(unittest.TestCase):
         the method should returns True for a valid postcode
         and should return False for an invalid postcode.
         """
-        postcode = Postcode("EC1A1BB")
-        self.assertTrue(postcode.is_valid())
+        test_values = ["TW13 4TA", "TW134TA"]
+        for value in test_values:
+            postcode = Postcode(value)
+            self.assertTrue(postcode.is_valid())
 
     def test_is_valid_with_invalid_postcode(self):
         """Test the validate method
         the method should return False for an invalid postcode.
         """
-        postcode = Postcode("EC1A 1BB")
+        postcode = Postcode("TW1344TA")
         self.assertFalse(postcode.is_valid())
 
     def test_invalid_data_type_provided(self):
