@@ -74,3 +74,15 @@ class Postcode:
         """
         formatted_code = self.format()
         return formatted_code[:-3]
+
+    def inward_code(self):
+        """Extract the inward code from a postcode
+        ---
+        Returns
+        -------
+        str
+            the inward code of the postcode
+            formatted to uppercase with whitespace removed
+        """
+        formatted_code = self.format()
+        return formatted_code[-3:]

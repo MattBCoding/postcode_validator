@@ -93,6 +93,24 @@ class TestPostcode(unittest.TestCase):
             postcode = Postcode(key)
             self.assertEqual(postcode.outward_code(), value)
 
+    def test_inward_code(self):
+        """Test the inward_code method
+        the method should return the inward code of the postcode
+        formatted to uppercase with all whitespace removed.
+        """
+        test_values = {
+            "ec1a 1bb": "1BB",
+            " ec1a1bb": "1BB",
+            "ec1a1bb ": "1BB",
+            "ec1a 1bb ": "1BB",
+            " ec1a 1bb": "1BB",
+            " ec1a    1bb ": "1BB",
+            " e c 1 a 1 b b ": "1BB",
+        }
+        for key, value in test_values.items():
+            postcode = Postcode(key)
+            self.assertEqual(postcode.inward_code(), value)
+
 
 if __name__ == "__main__":
     unittest.main()
