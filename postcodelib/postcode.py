@@ -86,3 +86,20 @@ class Postcode:
         """
         formatted_code = self.format()
         return formatted_code[-3:]
+
+    def validate(self):
+        """Validates a postcode
+        ---
+        Returns
+        -------
+        str
+            a formatted postcode if the postcode is valid,
+            formatted to uppercase with whitespace removed.
+        bool
+            False if the postcode is invalid.
+        """
+        formatted_postcode = self.format()
+        if bool(re.match(Rules.UK, formatted_postcode)):
+            return formatted_postcode
+        else:
+            return False
