@@ -51,3 +51,14 @@ class Postcode:
             the postcode with whitespace removed
         """
         return self.postcode.replace(" ", "")
+
+    def format(self):
+        """Format a postcode
+        ---
+        Returns
+        -------
+        str
+            the postcode formatted to uppercase with whitespace removed
+        """
+        whitespace_removed = self.remove_whitespace()
+        return whitespace_removed.upper()

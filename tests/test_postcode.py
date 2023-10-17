@@ -57,6 +57,24 @@ class TestPostcode(unittest.TestCase):
             postcode = Postcode(key)
             self.assertEqual(postcode.remove_whitespace(), value)
 
+    def test_format(self):
+        """Test the format method
+        the method should return the postcode formatted to uppercase
+        with all whitespace removed.
+        """
+        test_values = {
+            "ec1a 1bb": "EC1A1BB",
+            " ec1a1bb": "EC1A1BB",
+            "ec1a1bb ": "EC1A1BB",
+            "ec1a 1bb ": "EC1A1BB",
+            " ec1a 1bb": "EC1A1BB",
+            " ec1a    1bb ": "EC1A1BB",
+            " e c 1 a 1 b b ": "EC1A1BB",
+        }
+        for key, value in test_values.items():
+            postcode = Postcode(key)
+            self.assertEqual(postcode.format(), value)
+
 
 if __name__ == "__main__":
     unittest.main()
