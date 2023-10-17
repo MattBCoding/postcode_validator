@@ -32,7 +32,7 @@ class Postcode:
         else:
             raise TypeError("The postcode parameter must be a string")
 
-    def validate(self):
+    def is_valid(self):
         """Validate a postcode
         ---
         Returns
