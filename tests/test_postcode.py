@@ -139,6 +139,7 @@ class TestPostcode(unittest.TestCase):
 
     def test_validate_and_update(self):
         """Test the validate_and_update method
+
         the method should return a formatted postcode if valid,
         formatted to uppercase with all whitespace removed.
         if not valid, the method should return False.
@@ -156,6 +157,26 @@ class TestPostcode(unittest.TestCase):
             self.assertEqual(postcode.validate_and_update(), value)
             if value:
                 self.assertEqual(postcode.postcode, value)
+
+    def test_to_print(self):
+        """Test the to_print method
+
+        the method should return a formatted postcode if valid,
+        formatted to uppercase with a single space between the outward code
+        and inward code.
+        if not valid, the method should return False.
+        """
+        test_values = {
+            "ec1a 1bb": "EC1A 1BB",
+            "tw134ta": "TW13 4TA",
+            "LL11 4BJ": "LL11 4BJ",
+            "ecwrong": False,
+            "ec1ab": False,
+            "ec1a1b": False,
+        }
+        for key, value in test_values.items():
+            postcode = Postcode(key)
+            self.assertEqual(postcode.to_print(), value)
 
 
 if __name__ == "__main__":

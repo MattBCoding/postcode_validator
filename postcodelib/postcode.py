@@ -121,3 +121,24 @@ class Postcode:
             return formatted_postcode
         else:
             return False
+
+    def to_print(self):
+        """Inserts a space between the outward code and the inward code
+        ---
+
+        Takes the postcode string, confirms validity, and inserts a space
+        between the outward code and the inward code if valid.
+
+        Returns
+        -------
+        str
+            the postcode with a space inserted between the outward code
+            and the inward code
+        bool
+            False if the postcode is invalid.
+        """
+        formatted_postcode = self.validate()
+        if formatted_postcode:
+            return formatted_postcode[:-3] + " " + formatted_postcode[-3:]
+        else:
+            return False
