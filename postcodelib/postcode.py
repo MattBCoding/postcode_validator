@@ -5,10 +5,31 @@ from postcodelib.validation_rules import Rules
 class Postcode:
     """A class to represent a postcode
     ---
-    Parameters
+    Attributes
     ----------
     postcode : str
         a postcode string
+
+    Methods
+    -------
+    validate_parameter(postcode)
+        Validate the postcode parameter.
+    is_valid()
+        Checks a postcode is valid.
+    remove_whitespace()
+        Remove all whitespace from a postcode string.
+    format()
+        Format a postcode string to uppercase with all whitespace removed.
+    outward_code()
+        Extract the outward code from a postcode string.
+    inward_code()
+        Extract the inward code from a postcode string.
+    validate()
+        Validate a postcode string.
+    validate_and_update()
+        Validate a postcode string and update the postcode attribute.
+    to_print()
+        Insert a space between the outward code and the inward code.
     """
 
     def __init__(self, postcode: str):

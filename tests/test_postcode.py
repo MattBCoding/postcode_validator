@@ -5,13 +5,8 @@ from postcodelib.postcode import Postcode
 class TestPostcode(unittest.TestCase):
     """A class to test the Postcode class"""
 
-    def test_to_confirm_imports_work(self):
-        """Test that the postcode attribute is a string"""
-        postcode = Postcode("EC1A 1BB")
-        self.assertEqual(type(postcode.postcode), str)
-
     def test_is_valid_with_valid_postcode(self):
-        """Test the validate method
+        """Test the is_valid method
         the method should returns True for a valid postcode
         and should return False for an invalid postcode.
         """
@@ -21,7 +16,7 @@ class TestPostcode(unittest.TestCase):
             self.assertTrue(postcode.is_valid())
 
     def test_is_valid_with_invalid_postcode(self):
-        """Test the validate method
+        """Test the is_valid method
         the method should return False for an invalid postcode.
         """
         postcode = Postcode("TW1344TA")
