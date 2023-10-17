@@ -62,3 +62,15 @@ class Postcode:
         """
         whitespace_removed = self.remove_whitespace()
         return whitespace_removed.upper()
+
+    def outward_code(self):
+        """Extract the outward code from a postcode
+        ---
+        Returns
+        -------
+        str
+            the outward code of the postcode
+            formatted to uppercase with whitespace removed
+        """
+        formatted_code = self.format()
+        return formatted_code[:-3]
