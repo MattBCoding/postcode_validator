@@ -135,6 +135,26 @@ class TestPostcode(unittest.TestCase):
             postcode = Postcode(key)
             self.assertEqual(postcode.validate(), value)
 
+    def test_validate_and_update(self):
+        """Test the validate_and_update method
+        the method should return a formatted postcode if valid,
+        formatted to uppercase with all whitespace removed.
+        if not valid, the method should return False.
+        """
+        test_values = {
+            "ec1a 1bb": "EC1A1BB",
+            "tw134ta": "TW134TA",
+            "LL11 4BJ": "LL114BJ",
+            "ecwrong": False,
+            "ec1ab": False,
+            "ec1a1b": False,
+        }
+        for key, value in test_values.items():
+            postcode = Postcode(key)
+            self.assertEqual(postcode.validate_and_update(), value)
+            if value:
+                self.assertEqual(postcode.postcode, value)
+
 
 if __name__ == "__main__":
     unittest.main()

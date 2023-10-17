@@ -103,3 +103,21 @@ class Postcode:
             return formatted_postcode
         else:
             return False
+
+    def validate_and_update(self):
+        """Validates a postcode and updates the postcode attribute
+        ---
+        Returns
+        -------
+        str
+            a formatted postcode if the postcode is valid,
+            formatted to uppercase with whitespace removed.
+        bool
+            False if the postcode is invalid.
+        """
+        formatted_postcode = self.validate()
+        if formatted_postcode:
+            self.postcode = formatted_postcode
+            return formatted_postcode
+        else:
+            return False
