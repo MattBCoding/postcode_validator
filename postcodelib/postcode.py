@@ -41,3 +41,13 @@ class Postcode:
             True if the postcode is valid, False otherwise
         """
         return bool(re.match(Rules.UK, self.postcode))
+
+    def remove_whitespace(self):
+        """Remove whitespace from a postcode
+        ---
+        Returns
+        -------
+        str
+            the postcode with whitespace removed
+        """
+        return self.postcode.replace(" ", "")

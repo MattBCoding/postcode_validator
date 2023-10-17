@@ -40,6 +40,23 @@ class TestPostcode(unittest.TestCase):
             with self.assertRaises(TypeError):
                 Postcode(value)
 
+    def test_remove_whitespace(self):
+        """Test the remove_whitespace method
+        the method should return the postcode with whitespace removed.
+        """
+        test_values = {
+            "EC1A 1BB": "EC1A1BB",
+            " EC1A1BB": "EC1A1BB",
+            "EC1A1BB ": "EC1A1BB",
+            "EC1A 1BB ": "EC1A1BB",
+            " EC1A 1BB": "EC1A1BB",
+            " EC1A    1BB ": "EC1A1BB",
+            " E C 1 A 1 B B ": "EC1A1BB",
+        }
+        for key, value in test_values.items():
+            postcode = Postcode(key)
+            self.assertEqual(postcode.remove_whitespace(), value)
+
 
 if __name__ == "__main__":
     unittest.main()
