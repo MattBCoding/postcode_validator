@@ -25,6 +25,21 @@ class TestPostcode(unittest.TestCase):
         postcode = Postcode("EC1A 1BB")
         self.assertFalse(postcode.validate())
 
+    def test_invalid_data_type_provided(self):
+        """Test that providing an invalid data type raises a TypeError"""
+        test_values = [
+            True,
+            1,
+            1.0,
+            ["a", "b", "c"],
+            {"a": 1, "b": 2, "c": 3},
+            ("a", "b", "c"),
+            None,
+        ]
+        for value in test_values:
+            with self.assertRaises(TypeError):
+                Postcode(value)
+
 
 if __name__ == "__main__":
     unittest.main()
