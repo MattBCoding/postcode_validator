@@ -173,6 +173,20 @@ class TestPostcode(unittest.TestCase):
             postcode = Postcode(key)
             self.assertEqual(postcode.to_print(), value)
 
+    def test_str(self):
+        """Test the __str__ method
+
+        the method should return a string representation of the postcode.
+        """
+        test_values = {
+            "EC1A1BB": "EC1A1BB",
+            "TW134TA": "TW134TA",
+            "LL114BJ": "LL114BJ",
+        }
+        for key, value in test_values.items():
+            postcode = Postcode(key)
+            self.assertEqual(str(postcode), value)
+
 
 if __name__ == "__main__":
     unittest.main()
