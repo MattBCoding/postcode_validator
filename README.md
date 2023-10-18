@@ -1,4 +1,4 @@
-## Postcode_validator
+## Postcode Validator
 
 A python library to format and validate UK postcodes.
 
@@ -82,3 +82,16 @@ python3 -m build
 
 This command will generate two files and place them in a new `dist/` directory.
 The `tar.gz` file is a source distribution whereas the `.whl` file is a built distribution.
+
+### Design Decisions
+
+The objective of this library is to provide a developer with the ability to format and validate a UK postcode. UK postcodes can take several different formats with several special case scenarios existing that result in postcodes that differ in format from a standard residential postcode. To ensure compatibility with these special case scenarios, the validation process needs to incorporate all the different formats currently available. For this reason, a regular expression that includes the special case scenarios was utilised for validating each postcode. To perform a simple validation check on a postcode object `is_valid()` will perform the check against the string stored within the object. It only checks for validity and does not format the string in any way.
+
+An assumption was made that the developer using this library would be obtaining the postcodes from some other source, and unlikely to be manually entering them. Given that the source of the postcode data is unknown, it is important to maintain as much flexibility as possible in formatting them. Sources such as user input, web forms, web scraping or imported from a file could feasibly result in a postcode string that contains incorrect spacing at almost any point of the postcode. For this reason, it was determined to ensure maximum flexibility and compatibility, a formatting method to simply remove all whitespace would be provided `remove_whitespace()`. For similar reasons, a method to format the string into uppercase was also provided `format()`. This combination results in the ability to establish a consistent base postcode string for validation.
+
+What the developer intends to use the formatted and validated postcode string for is unknown. It may just be passed through to another API, stored or printed. As the use case is unknown, a number of methods were developed to account for likely scenarios.
+
+- All methods with the exception of `validate_and_update()` return either a boolean value or a string without changing the original value stored within the Postcode object. The `validate_and_update()` method however will format the originally provided string to uppercase, remove all whitespace and provided the resulting postcode passes the validation checks, it will then update the original stored string to the formatted value before returning the formatted string. This enables the original object to be stored if desired.
+- The alternative `validate()` method performs the exact same operation without changing the original string.
+- A UK postcode can be considered valid with or without a single space before the inward code (the last three characters). Therefore, to reduce memory requirements, the default formatting returned excludes this single space. If the space is required a `to_print()` method has been provided. This method performs the same formatting and validation checks as the `validate()` method but returns the string with a single space inserted before the inward code.
+- A postcode is made up of two parts, the outward code and the inner code. Whilst a few outward codes are non geographic they predominately identify a geographic region. Therefore it was deemed likely that it may be necessary to utilise part of the code for a specific purpose, such as establish different shipping rates for different areas. To assist in this scenario two methods were provided a `outward_code()` and `inward_code()`. These methods format, extract and return the respective parts of the postal code. They do not validate the postal code so should be utilised in conjunction with one of the validation methods.
