@@ -51,6 +51,14 @@ For a Mac or Linux machine, you might need to specify 'python3' at the start
 python3 -m unittest tests/test_postcode.py
 ```
 
+Test coverage was monitored using the `coverage` package. To install the package, run `pip install coverage` in the terminal from the project root directory. To run the test suite with coverage, use the following command in a Windows terminal from the project root directory.
+
+```
+coverage run -m unittest discover
+```
+
+This enables the coverage package to collate information on which parts of the program have been executed. To view a report of the results in the terminal you can use `coverage report`. To view the results in a browser use `coverage html`. This will create a `"htmlcov/"` directory containing a number of files, open the `"htmlcov/index.html"` file in your browser to view the results.
+
 ### Build as a library
 
 To build the project as a library, ready to upload to PyPi you will need to install the build package from pip, this will install colorama, packaging and pyproject_hooks as well.
