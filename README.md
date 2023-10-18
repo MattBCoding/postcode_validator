@@ -12,7 +12,11 @@ The library utilises a Regular Expression to perform the validation. The Regular
 
 ### Usage
 
-The postcodelib.postcode library contains a Postcode class. The class can be instantiated by passing in a postcode as a string. E.g. `Postcode("TW134TA")`
+The postcodelib.postcode library contains a Postcode class. The class can be instantiated by passing in a postcode as a string. E.g.
+
+```python
+inputted_postcode = Postcode("TW134TA")
+```
 
 #### Attributes
 
